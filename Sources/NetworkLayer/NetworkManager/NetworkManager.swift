@@ -8,7 +8,11 @@
 import Foundation
 
 public final class NetworkManager: Sendable {
-    private let session: URLSession = .shared
+    private let session: URLSession
+    
+    public init() {
+        session = .shared
+    }
     
     public func send<T: NetworkRequest>(_ request: T) async throws -> T.Response {
         let urlRequest = try request.toURLRequest()
