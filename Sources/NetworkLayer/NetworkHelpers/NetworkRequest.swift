@@ -17,7 +17,7 @@ public protocol NetworkRequest {
     var queryItems: [String: Any?]? { get }
 }
 
-extension NetworkRequest {
+public extension NetworkRequest {
     var baseURL: String {
         "https://dummyjson.com"
     }
