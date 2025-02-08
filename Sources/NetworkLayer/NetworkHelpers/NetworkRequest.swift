@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol NetworkRequest: Encodable {
+public protocol NetworkRequest {
     associatedtype Response: Decodable
     var baseURL: String { get }
     var endpoint: String { get }
@@ -55,11 +55,7 @@ extension NetworkRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
-        
-        
-        if method != .get {
-            request.httpBody = try JSONEncoder().encode(self)
-        }
+        request.httpBody = body?.data()
         
         return request
     }
